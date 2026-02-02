@@ -2,7 +2,7 @@
 Decision Path Analysis для Crypto Trading Bot v5.0
 
 Реализует comprehensive анализ путей принятия решений в торговых моделях
-с поддержкой tree-based models и Context7 enterprise patterns.
+с поддержкой tree-based models и enterprise patterns.
 """
 
 import logging
@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class DecisionPathConfig:
-    """Конфигурация для decision path analysis с Context7 patterns"""
+    """Конфигурация для decision path analysis с enterprise patterns"""
     max_depth_analysis: int = 10
     min_samples_leaf_analysis: int = 5
     max_paths_per_tree: int = 100
@@ -90,7 +90,7 @@ class DecisionRule:
 
 @dataclass
 class DecisionPathResult:
-    """Результат анализа путей решений с Context7 metadata"""
+    """Результат анализа путей решений с  metadata"""
     decision_rules: List[DecisionRule]
     path_statistics: Dict[str, Any]
     feature_interaction_analysis: Dict[str, Any]
@@ -104,7 +104,7 @@ class DecisionPathResult:
     model_complexity_score: float = 0.0
     decision_boundary_clarity: float = 0.0
     rule_consistency_score: float = 0.0
-    # Context7 enterprise metadata
+    #  enterprise metadata
     total_paths_analyzed: int = 0
     significant_paths: int = 0
     validation_metrics: Optional[Dict[str, float]] = None
@@ -122,7 +122,7 @@ class CryptoTradingDecisionPathAnalyzer:
     - Risk path identification
     - Model complexity analysis
     
-    Context7 Patterns:
+    enterprise patterns:
     - Tree-agnostic path extraction
     - Trading-aware rule interpretation
     - Enterprise rule validation

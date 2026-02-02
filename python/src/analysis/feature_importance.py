@@ -2,7 +2,7 @@
 Feature Importance Analysis для Crypto Trading Bot v5.0
 
 Реализует comprehensive анализ важности признаков для торговых моделей
-с поддержкой multiple methods и Context7 enterprise patterns.
+с поддержкой multiple methods и enterprise patterns.
 """
 
 import logging
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class FeatureImportanceConfig:
-    """Конфигурация для feature importance analysis с Context7 patterns"""
+    """Конфигурация для feature importance analysis с enterprise patterns"""
     methods: List[str] = None  # ['permutation', 'shap', 'mutual_info', 'rfe', 'univariate']
     n_repeats: int = 10  # For permutation importance
     random_state: int = 42
@@ -69,7 +69,7 @@ class FeatureImportanceConfig:
 
 @dataclass
 class FeatureImportanceResult:
-    """Результат анализа важности признаков с Context7 metadata"""
+    """Результат анализа важности признаков с  metadata"""
     feature_scores: Dict[str, Dict[str, float]]  # method -> feature -> score
     feature_rankings: Dict[str, List[Tuple[str, float]]]  # method -> [(feature, score), ...]
     consensus_ranking: List[Tuple[str, float]]  # Consensus across methods
@@ -84,7 +84,7 @@ class FeatureImportanceResult:
     total_features: int = 0
     significant_features: int = 0
     redundant_features: Optional[List[str]] = None
-    # Context7 enterprise metadata
+    #  enterprise metadata
     validation_metrics: Optional[Dict[str, float]] = None
     compliance_flags: Optional[List[str]] = None
 
@@ -100,7 +100,7 @@ class CryptoTradingFeatureImportanceAnalyzer:
     - Market regime detection
     - Feature selection и dimensionality reduction
     
-    Context7 Patterns:
+    enterprise patterns:
     - Multi-method consensus analysis
     - Trading-aware feature categorization
     - Enterprise caching и monitoring

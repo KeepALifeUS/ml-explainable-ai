@@ -14,7 +14,7 @@ authors = [
 keywords = [
     "explainable-ai", "xai", "machine-learning", "interpretability",
     "shap", "lime", "crypto", "trading", "model-explanation",
-    "transparency", "compliance", "context7"
+    "transparency", "compliance", 
 ]
 classifiers = [
     "Development Status :: 4 - Beta",

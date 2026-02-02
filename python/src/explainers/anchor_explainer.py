@@ -3,7 +3,7 @@ Anchor Explainer для Crypto Trading Bot v5.0
 
 Реализует Anchor-based explanations для high-precision rule-based
 interpretability в торговых моделях.
-Context7 enterprise patterns для rule-based model understanding.
+enterprise patterns для rule-based model understanding.
 """
 
 import logging
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class AnchorConfig:
-    """Конфигурация для anchor explainer с Context7 patterns"""
+    """Конфигурация для anchor explainer с enterprise patterns"""
     threshold: float = 0.95  # Precision threshold для anchors
     delta: float = 0.1  # Confidence level
     tau: float = 0.15  # Margin around threshold
@@ -78,7 +78,7 @@ class AnchorRule:
 
 @dataclass
 class AnchorExplanation:
-    """Structured anchor explanation с Context7 metadata"""
+    """Structured anchor explanation с  metadata"""
     anchor_rules: List[AnchorRule]
     primary_anchor: AnchorRule
     instance_prediction: Union[int, float, np.ndarray]
@@ -95,7 +95,7 @@ class AnchorExplanation:
     average_precision: float = 0.0
     average_coverage: float = 0.0
     rule_diversity_score: float = 0.0
-    # Context7 enterprise metadata
+    #  enterprise metadata
     model_version: Optional[str] = None
     rule_validation_score: Optional[float] = None
     compliance_flags: Optional[List[str]] = None
@@ -112,7 +112,7 @@ class CryptoTradingAnchorExplainer:
     - Risk constraint validation
     - Regulatory compliance rules
     
-    Context7 Patterns:
+    enterprise patterns:
     - High-precision rule generation
     - Market-aware rule validation
     - Enterprise rule management

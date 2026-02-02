@@ -3,7 +3,7 @@ Counterfactual Explainer для Crypto Trading Bot v5.0
 
 Реализует counterfactual explanations для understanding decision boundaries
 и альтернативных сценариев в торговых моделях.
-Context7 enterprise patterns для scenario-based interpretability.
+enterprise patterns для scenario-based interpretability.
 """
 
 import logging
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class CounterfactualConfig:
-    """Конфигурация для counterfactual explainer с Context7 patterns"""
+    """Конфигурация для counterfactual explainer с enterprise patterns"""
     method: str = 'optimization'  # 'optimization', 'prototype', 'genetic', 'alibi'
     target_class: Optional[int] = None
     distance_metric: str = 'euclidean'
@@ -63,7 +63,7 @@ class CounterfactualConfig:
 
 @dataclass
 class CounterfactualExplanation:
-    """Structured counterfactual explanation с Context7 metadata"""
+    """Structured counterfactual explanation с  metadata"""
     original_instance: np.ndarray
     counterfactual_instance: np.ndarray
     original_prediction: Union[int, float, np.ndarray]
@@ -84,7 +84,7 @@ class CounterfactualExplanation:
     optimization_converged: bool = False
     optimization_iterations: int = 0
     optimization_method: str = ''
-    # Context7 enterprise metadata
+    #  enterprise metadata
     model_version: Optional[str] = None
     scenario_id: Optional[str] = None
     compliance_flags: Optional[List[str]] = None
@@ -101,7 +101,7 @@ class CryptoTradingCounterfactualExplainer:
     - Risk scenario modeling
     - Model robustness testing
     
-    Context7 Patterns:
+    enterprise patterns:
     - Advanced optimization algorithms
     - Market constraint preservation
     - High-performance async processing

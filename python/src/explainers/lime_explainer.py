@@ -2,7 +2,7 @@
 LIME (Local Interpretable Model-agnostic Explanations) Explainer для Crypto Trading Bot v5.0
 
 Реализует LIME-based local explanations для любых ML моделей в торговых системах.
-Context7 enterprise patterns для model-agnostic interpretability.
+enterprise patterns для model-agnostic interpretability.
 """
 
 import logging
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class LIMEConfig:
-    """Конфигурация для LIME explainer с Context7 enterprise patterns"""
+    """Конфигурация для LIME explainer с enterprise patterns"""
     mode: str = 'tabular'  # 'tabular', 'text', 'image'
     num_features: int = 10
     num_samples: int = 1000
@@ -56,7 +56,7 @@ class LIMEConfig:
 
 @dataclass
 class LIMEExplanation:
-    """Structured LIME explanation результат с Context7 metadata"""
+    """Structured LIME explanation результат с  metadata"""
     local_explanation: Dict[str, Any]
     feature_importance: Dict[str, float]
     prediction_probabilities: np.ndarray
@@ -74,7 +74,7 @@ class LIMEExplanation:
     num_features_used: int = 0
     samples_generated: int = 0
     explanation_fidelity: float = 0.0
-    # Context7 enterprise metadata
+    #  enterprise metadata
     model_version: Optional[str] = None
     data_version: Optional[str] = None
     compliance_flags: Optional[List[str]] = None
@@ -91,7 +91,7 @@ class CryptoTradingLIMEExplainer:
     - A/B testing model variants
     - Black-box model understanding
     
-    Context7 Patterns:
+    enterprise patterns:
     - Model-agnostic architecture для any ML framework
     - High-performance local explanations
     - Enterprise caching и monitoring

@@ -2,7 +2,7 @@
 Explanation Dashboard для Crypto Trading Bot v5.0
 
 Реализует comprehensive interactive dashboard для visualizing XAI results
-в торговых системах с Context7 enterprise patterns.
+в торговых системах с enterprise patterns.
 """
 
 import logging
@@ -43,7 +43,7 @@ class CryptoTradingExplanationDashboard:
     - Trading signal interpretation
     - Risk analysis и compliance reporting
     
-    Context7 Patterns:
+    enterprise patterns:
     - Real-time explanation updates
     - Multi-model comparison
     - Enterprise authentication

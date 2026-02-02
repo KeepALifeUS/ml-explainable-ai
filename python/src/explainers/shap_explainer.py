@@ -2,7 +2,7 @@
 SHAP (SHapley Additive exPlanations) Explainer для Crypto Trading Bot v5.0
 
 Реализует comprehensive SHAP-based объяснения для моделей ML в торговых системах.
-Context7 enterprise patterns для interpretability и transparency.
+enterprise patterns для interpretability и transparency.
 """
 
 import logging
@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class SHAPConfig:
-    """Конфигурация для SHAP explainer с Context7 patterns"""
+    """Конфигурация для SHAP explainer с enterprise patterns"""
     explainer_type: str = 'tree'  # 'tree', 'deep', 'linear', 'kernel', 'permutation'
     max_evals: int = 100
     feature_perturbation: str = 'interventional'
@@ -50,7 +50,7 @@ class SHAPConfig:
 
 @dataclass 
 class SHAPExplanation:
-    """Structured SHAP explanation результат с Context7 metadata"""
+    """Structured SHAP explanation результат с  metadata"""
     shap_values: np.ndarray
     base_values: Union[float, np.ndarray]
     data: np.ndarray
@@ -64,7 +64,7 @@ class SHAPExplanation:
     prediction_confidence: Optional[float] = None
     trade_signal: Optional[str] = None
     risk_factors: Optional[Dict[str, float]] = None
-    # Context7 enterprise metadata
+    #  enterprise metadata
     model_version: Optional[str] = None
     data_version: Optional[str] = None
     compliance_flags: Optional[List[str]] = None
@@ -81,7 +81,7 @@ class CryptoTradingSHAPExplainer:
     - Market regime detection
     - Anomaly detection in trading patterns
     
-    Context7 Patterns:
+    enterprise patterns:
     - Async processing для high-frequency explanations
     - Caching для performance optimization
     - Enterprise monitoring и logging
