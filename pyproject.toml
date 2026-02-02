@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ctb3-ml-explainable-ai"
+name = "ml-explainable-ai"
 version = "1.0.0"
 description = "Comprehensive Explainable AI Framework for Crypto Trading Bot v5.0"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "CTB3 Team", email = "team@ctb3.com"}
+    {name = "ML Team", email = "team@example.com"}
 ]
 keywords = [
     "explainable-ai", "xai", "machine-learning", "interpretability",
@@ -113,15 +113,15 @@ gpu = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ctb3/crypto-trading-bot-v5"
-Repository = "https://github.com/ctb3/crypto-trading-bot-v5"
-Documentation = "https://ctb3.readthedocs.io"
-"Bug Tracker" = "https://github.com/ctb3/crypto-trading-bot-v5/issues"
+Homepage = "https://github.com/KeepALifeUS"
+Repository = "https://github.com/KeepALifeUS"
+Documentation = "https://example.com"
+"Bug Tracker" = "https://github.com/KeepALifeUS"
 
 [project.scripts]
-ctb3-xai = "src.cli:main"
-ctb3-explain = "src.explainers.cli:main"
-ctb3-dashboard = "src.visualization.explanation_dashboard:main"
+xai = "src.cli:main"
+explain = "src.explainers.cli:main"
+dashboard = "src.visualization.explanation_dashboard:main"
 
 [tool.setuptools.packages.find]
 where = ["python"]
