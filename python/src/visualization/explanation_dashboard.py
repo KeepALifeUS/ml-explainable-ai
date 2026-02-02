@@ -1,8 +1,8 @@
 """
-Explanation Dashboard для Crypto Trading Bot v5.0
+Explanation Dashboard Crypto Trading Bot v5.0
 
-Реализует comprehensive interactive dashboard для visualizing XAI results
-в торговых системах с enterprise patterns.
+ comprehensive interactive dashboard visualizing XAI results
+    enterprise patterns.
 """
 
 import logging
@@ -34,14 +34,14 @@ logger = logging.getLogger(__name__)
 
 class CryptoTradingExplanationDashboard:
     """
-    Enterprise-grade explanation dashboard для crypto trading models
+    Enterprise-grade explanation dashboard crypto trading models
     
-    Provides interactive visualization для:
+    Provides interactive visualization :
     - SHAP, LIME, Counterfactual, Anchor explanations
     - Feature importance analysis
     - Decision path visualization
     - Trading signal interpretation
-    - Risk analysis и compliance reporting
+    - Risk analysis compliance reporting
     
     enterprise patterns:
     - Real-time explanation updates
@@ -70,7 +70,7 @@ class CryptoTradingExplanationDashboard:
             suppress_callback_exceptions=True
         )
         
-        # Data storage для real-time updates
+        # Data storage real-time updates
         self.explanation_data = {
             'shap': [],
             'lime': [],
@@ -80,7 +80,7 @@ class CryptoTradingExplanationDashboard:
             'decision_paths': None
         }
         
-        # Trading symbols для filtering
+        # Trading symbols filtering
         self.available_symbols = set()
         
         # Initialize dashboard layout
@@ -90,14 +90,14 @@ class CryptoTradingExplanationDashboard:
         logger.info(f"Initialized explanation dashboard on port {port}")
     
     def _setup_layout(self) -> None:
-        """Setup dashboard layout с trading focus"""
+        """Setup dashboard layout trading focus"""
         self.app.layout = dbc.Container([
             # Header
             dbc.Row([
                 dbc.Col([
                     html.H1("🤖 Crypto Trading AI Explainability Dashboard", 
                            className="text-center mb-4"),
-                    html.P("Real-time model interpretation для crypto trading decisions",
+                    html.P("Real-time model interpretation crypto trading decisions",
                            className="text-center text-muted mb-4")
                 ])
             ]),
@@ -257,7 +257,7 @@ class CryptoTradingExplanationDashboard:
         ], fluid=True)
     
     def _setup_callbacks(self) -> None:
-        """Setup dashboard callbacks для interactivity"""
+        """Setup dashboard callbacks interactivity"""
         
         # Update symbol dropdown options
         @self.app.callback(
@@ -335,7 +335,7 @@ class CryptoTradingExplanationDashboard:
                 if hasattr(explanation, 'symbol') and explanation.symbol:
                     self.available_symbols.add(explanation.symbol)
                 
-                # Limit stored explanations для memory management
+                # Limit stored explanations memory management
                 if len(self.explanation_data[explanation_type]) > 1000:
                     self.explanation_data[explanation_type] = self.explanation_data[explanation_type][-500:]
                 
@@ -365,7 +365,7 @@ class CryptoTradingExplanationDashboard:
         symbol: Optional[str],
         time_range: str
     ) -> Tuple[str, str, str, str]:
-        """Calculate summary statistics для dashboard"""
+        """Calculate summary statistics dashboard"""
         try:
             # Filter explanations by symbol and time
             filtered_explanations = self._filter_explanations(symbol, time_range)
@@ -435,7 +435,7 @@ class CryptoTradingExplanationDashboard:
             return []
     
     def _get_cutoff_time(self, time_range: str) -> datetime:
-        """Get cutoff time для filtering"""
+        """Get cutoff time filtering"""
         now = datetime.now()
         
         if time_range == '1h':
@@ -945,7 +945,7 @@ class CryptoTradingExplanationDashboard:
         method: str,
         symbol: Optional[str]
     ) -> html.Div:
-        """Create content для active tab"""
+        """Create content active tab"""
         try:
             if active_tab == "details":
                 return self._create_details_tab(method, symbol)
@@ -1052,13 +1052,13 @@ class CryptoTradingExplanationDashboard:
 
 
 def main():
-    """Main function для standalone dashboard"""
+    """Main function standalone dashboard"""
     dashboard = CryptoTradingExplanationDashboard(
         port=8050,
         debug=True
     )
     
-    # Add sample data для testing
+    # Add sample data testing
     from datetime import datetime
     
     # Sample SHAP explanation

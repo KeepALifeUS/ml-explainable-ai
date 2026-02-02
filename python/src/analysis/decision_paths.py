@@ -1,8 +1,8 @@
 """
-Decision Path Analysis для Crypto Trading Bot v5.0
+Decision Path Analysis Crypto Trading Bot v5.0
 
-Реализует comprehensive анализ путей принятия решений в торговых моделях
-с поддержкой tree-based models и enterprise patterns.
+ comprehensive analysis
+ support tree-based models enterprise patterns.
 """
 
 import logging
@@ -49,7 +49,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class DecisionPathConfig:
-    """Конфигурация для decision path analysis с enterprise patterns"""
+    """Configuration decision path analysis enterprise patterns"""
     max_depth_analysis: int = 10
     min_samples_leaf_analysis: int = 5
     max_paths_per_tree: int = 100
@@ -71,7 +71,7 @@ class DecisionPathConfig:
 
 @dataclass
 class DecisionRule:
-    """Single decision rule с trading metadata"""
+    """Single decision rule trading metadata"""
     conditions: List[str]  # List of conditions in the path
     prediction: Union[int, float]
     confidence: float
@@ -90,7 +90,7 @@ class DecisionRule:
 
 @dataclass
 class DecisionPathResult:
-    """Результат анализа путей решений с  metadata"""
+    """ analysis metadata"""
     decision_rules: List[DecisionRule]
     path_statistics: Dict[str, Any]
     feature_interaction_analysis: Dict[str, Any]
@@ -113,9 +113,9 @@ class DecisionPathResult:
 
 class CryptoTradingDecisionPathAnalyzer:
     """
-    Enterprise-grade decision path analyzer для crypto trading models
+    Enterprise-grade decision path analyzer crypto trading models
     
-    Provides comprehensive decision path analysis для:
+    Provides comprehensive decision path analysis :
     - Tree-based trading models (RF, XGBoost, LightGBM)
     - Decision rule extraction
     - Trading strategy interpretation
@@ -126,7 +126,7 @@ class CryptoTradingDecisionPathAnalyzer:
     - Tree-agnostic path extraction
     - Trading-aware rule interpretation
     - Enterprise rule validation
-    - Async processing для large ensembles
+    - Async processing large ensembles
     - Regulatory compliance tracking
     """
     
@@ -190,11 +190,11 @@ class CryptoTradingDecisionPathAnalyzer:
         feature_names: Optional[List[str]] = None
     ) -> DecisionPathResult:
         """
-        Async decision path analysis для large models
+        Async decision path analysis large models
         
         Args:
-            X: Feature matrix для path analysis
-            y: Target variable (optional, для validation)
+            X: Feature matrix path analysis
+            y: Target variable (optional, validation)
             feature_names: Feature names
             
         Returns:
@@ -570,7 +570,7 @@ class CryptoTradingDecisionPathAnalyzer:
                     
                     rules.append(rule)
             
-            return rules[:5]  # Limit для performance
+            return rules[:5] # Limit performance
             
         except Exception as e:
             logger.warning(f"Error parsing XGBoost tree: {e}")
@@ -626,7 +626,7 @@ class CryptoTradingDecisionPathAnalyzer:
             # Start traversal
             traverse_lgb_tree(tree_data['tree_structure'], [], [])
             
-            return rules[:10]  # Limit для performance
+            return rules[:10] # Limit performance
             
         except Exception as e:
             logger.warning(f"Error parsing LightGBM tree: {e}")

@@ -1,9 +1,9 @@
 """
-Anchor Explainer для Crypto Trading Bot v5.0
+Anchor Explainer Crypto Trading Bot v5.0
 
-Реализует Anchor-based explanations для high-precision rule-based
-interpretability в торговых моделях.
-enterprise patterns для rule-based model understanding.
+ Anchor-based explanations high-precision rule-based
+interpretability .
+enterprise patterns rule-based model understanding.
 """
 
 import logging
@@ -39,8 +39,8 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class AnchorConfig:
-    """Конфигурация для anchor explainer с enterprise patterns"""
-    threshold: float = 0.95  # Precision threshold для anchors
+    """Configuration anchor explainer enterprise patterns"""
+    threshold: float = 0.95 # Precision threshold anchors
     delta: float = 0.1  # Confidence level
     tau: float = 0.15  # Margin around threshold
     batch_size: int = 100
@@ -62,7 +62,7 @@ class AnchorConfig:
 
 @dataclass
 class AnchorRule:
-    """Single anchor rule с trading metadata"""
+    """Single anchor rule trading metadata"""
     features: List[str]
     conditions: List[str] 
     precision: float
@@ -78,7 +78,7 @@ class AnchorRule:
 
 @dataclass
 class AnchorExplanation:
-    """Structured anchor explanation с  metadata"""
+    """Structured anchor explanation metadata"""
     anchor_rules: List[AnchorRule]
     primary_anchor: AnchorRule
     instance_prediction: Union[int, float, np.ndarray]
@@ -103,9 +103,9 @@ class AnchorExplanation:
 
 class CryptoTradingAnchorExplainer:
     """
-    Enterprise-grade anchor explainer для crypto trading models
+    Enterprise-grade anchor explainer crypto trading models
     
-    Provides rule-based interpretability для:
+    Provides rule-based interpretability :
     - High-precision trading rules
     - Market condition identification
     - Strategy rule discovery
@@ -128,7 +128,7 @@ class CryptoTradingAnchorExplainer:
         categorical_features: Optional[List[int]] = None,
         cache_dir: Optional[Path] = None
     ):
-        """Initialize anchor explainer с enterprise configuration"""
+        """Initialize anchor explainer enterprise configuration"""
         self.model = model
         self.config = config or AnchorConfig()
         self.feature_names = feature_names or []
@@ -140,7 +140,7 @@ class CryptoTradingAnchorExplainer:
         self._predict_fn = self._create_predict_function()
         self._predict_proba_fn = self._create_predict_proba_function()
         
-        # Training data для discretization и rule validation
+        # Training data discretization rule validation
         self._training_data: Optional[np.ndarray] = None
         self._feature_discretizers: Dict[int, Any] = {}
         
@@ -164,7 +164,7 @@ class CryptoTradingAnchorExplainer:
         if hasattr(self.model, 'predict_proba'):
             return self.model.predict_proba
         else:
-            # Fallback для non-probabilistic models
+            # Fallback non-probabilistic models
             def predict_proba_wrapper(x):
                 predictions = self._predict_fn(x)
                 if predictions.ndim == 1:
@@ -180,11 +180,11 @@ class CryptoTradingAnchorExplainer:
         categorical_features: Optional[List[int]] = None
     ) -> None:
         """
-        Fit anchor explainer на training данных
+        Fit anchor explainer on training data
         
         Args:
-            training_data: Training data для discretization
-            feature_names: Feature names для interpretability
+            training_data: Training data discretization
+            feature_names: Feature names interpretability
             categorical_features: Indices of categorical features
         """
         try:
@@ -218,7 +218,7 @@ class CryptoTradingAnchorExplainer:
             raise
     
     def _setup_discretization(self) -> None:
-        """Setup feature discretization для continuous features"""
+        """Setup feature discretization continuous features"""
         try:
             for feature_idx in range(self._training_data.shape[1]):
                 if feature_idx not in self.categorical_features:
@@ -351,15 +351,15 @@ class CryptoTradingAnchorExplainer:
         threshold: Optional[float] = None
     ) -> AnchorExplanation:
         """
-        Async anchor explanation для high-frequency trading
+        Async anchor explanation high-frequency trading
         
         Args:
-            instance: Instance для anchor generation
-            symbol: Trading symbol для context
-            threshold: Precision threshold для anchors
+            instance: Instance anchor generation
+            symbol: Trading symbol context
+            threshold: Precision threshold anchors
             
         Returns:
-            Anchor explanation с trading rules
+            Anchor explanation trading rules
         """
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(
@@ -566,7 +566,7 @@ class CryptoTradingAnchorExplainer:
                         if anchor_rule and anchor_rule.precision >= threshold:
                             anchor_rules.append(anchor_rule)
                         
-                        # Limit number of rules для performance
+                        # Limit number of rules performance
                         if len(anchor_rules) >= 20:
                             break
                             
@@ -593,7 +593,7 @@ class CryptoTradingAnchorExplainer:
         feature_combo: Tuple[int, ...],
         threshold: float
     ) -> Optional[AnchorRule]:
-        """Evaluate specific feature combination для anchor rule"""
+        """Evaluate specific feature combination anchor rule"""
         try:
             # Generate conditions for this combination
             conditions = []
@@ -658,7 +658,7 @@ class CryptoTradingAnchorExplainer:
             return None
     
     def _create_feature_condition(self, instance: np.ndarray, feature_idx: int) -> str:
-        """Create condition string для feature"""
+        """Create condition string feature"""
         feature_value = instance[feature_idx]
         feature_name = self.feature_names[feature_idx] if feature_idx < len(self.feature_names) else f"feature_{feature_idx}"
         
@@ -794,7 +794,7 @@ class CryptoTradingAnchorExplainer:
             
             anchor_rule.market_conditions = market_conditions if market_conditions else ["General"]
             
-            # Risk level based on precision и coverage
+            # Risk level based on precision coverage
             if anchor_rule.precision >= 0.95 and anchor_rule.coverage >= 0.1:
                 anchor_rule.risk_level = "LOW"
             elif anchor_rule.precision >= 0.85 and anchor_rule.coverage >= 0.05:
@@ -903,7 +903,7 @@ class CryptoTradingAnchorExplainer:
                 'rule_diversity_score': 0.0
             }
         
-        # Average precision и coverage
+        # Average precision coverage
         avg_precision = float(np.mean([rule.precision for rule in anchor_rules]))
         avg_coverage = float(np.mean([rule.coverage for rule in anchor_rules]))
         

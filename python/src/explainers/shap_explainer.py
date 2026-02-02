@@ -1,8 +1,8 @@
 """
-SHAP (SHapley Additive exPlanations) Explainer для Crypto Trading Bot v5.0
+SHAP (SHapley Additive exPlanations) Explainer Crypto Trading Bot v5.0
 
-Реализует comprehensive SHAP-based объяснения для моделей ML в торговых системах.
-enterprise patterns для interpretability и transparency.
+ comprehensive SHAP-based ML .
+enterprise patterns interpretability transparency.
 """
 
 import logging
@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class SHAPConfig:
-    """Конфигурация для SHAP explainer с enterprise patterns"""
+    """Configuration SHAP explainer enterprise patterns"""
     explainer_type: str = 'tree'  # 'tree', 'deep', 'linear', 'kernel', 'permutation'
     max_evals: int = 100
     feature_perturbation: str = 'interventional'
@@ -50,7 +50,7 @@ class SHAPConfig:
 
 @dataclass 
 class SHAPExplanation:
-    """Structured SHAP explanation результат с  metadata"""
+    """Structured SHAP explanation metadata"""
     shap_values: np.ndarray
     base_values: Union[float, np.ndarray]
     data: np.ndarray
@@ -72,9 +72,9 @@ class SHAPExplanation:
 
 class CryptoTradingSHAPExplainer:
     """
-    Enterprise-grade SHAP explainer для crypto trading models
+    Enterprise-grade SHAP explainer crypto trading models
     
-    Provides comprehensive model interpretability для:
+    Provides comprehensive model interpretability :
     - Trading signal predictions
     - Risk assessment models  
     - Portfolio optimization
@@ -82,10 +82,10 @@ class CryptoTradingSHAPExplainer:
     - Anomaly detection in trading patterns
     
     enterprise patterns:
-    - Async processing для high-frequency explanations
-    - Caching для performance optimization
-    - Enterprise monitoring и logging
-    - Compliance tracking для regulatory requirements
+    - Async processing high-frequency explanations
+    - Caching performance optimization
+    - Enterprise monitoring logging
+    - Compliance tracking regulatory requirements
     """
     
     def __init__(
@@ -94,7 +94,7 @@ class CryptoTradingSHAPExplainer:
         config: Optional[SHAPConfig] = None,
         cache_dir: Optional[Path] = None
     ):
-        """Initialize SHAP explainer с enterprise configuration"""
+        """Initialize SHAP explainer enterprise configuration"""
         self.model = model
         self.config = config or SHAPConfig()
         self.cache_dir = cache_dir or Path("./cache/shap_explanations")
@@ -114,11 +114,11 @@ class CryptoTradingSHAPExplainer:
         feature_names: Optional[List[str]] = None
     ) -> None:
         """
-        Fit SHAP explainer на background данных
+        Fit SHAP explainer on background data
         
         Args:
-            background_data: Baseline данные для SHAP calculations
-            feature_names: Имена features для interpretability
+            background_data: Baseline SHAP calculations
+            feature_names: features interpretability
         """
         try:
             # Prepare background data
@@ -129,7 +129,7 @@ class CryptoTradingSHAPExplainer:
                 self._feature_names = feature_names or [f"feature_{i}" for i in range(background_data.shape[1])]
                 background_array = background_data
             
-            # Sample background data if too large для performance
+            # Sample background data if too large performance
             if len(background_array) > self.config.background_size:
                 indices = np.random.choice(
                     len(background_array), 
@@ -197,15 +197,15 @@ class CryptoTradingSHAPExplainer:
         max_evals: Optional[int] = None
     ) -> SHAPExplanation:
         """
-        Async SHAP explanation для high-frequency trading
+        Async SHAP explanation high-frequency trading
         
         Args:
-            data: Input data для объяснения
-            symbol: Trading symbol для context
-            max_evals: Maximum evaluations для performance control
+            data: Input data
+            symbol: Trading symbol context
+            max_evals: Maximum evaluations performance control
             
         Returns:
-            Structured SHAP explanation с trading metadata
+            Structured SHAP explanation trading metadata
         """
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(
@@ -223,11 +223,11 @@ class CryptoTradingSHAPExplainer:
         max_evals: Optional[int] = None
     ) -> SHAPExplanation:
         """
-        Generate SHAP explanation для данных
+        Generate SHAP explanation data
         
         Args:
-            data: Input data для объяснения
-            symbol: Trading symbol для context
+            data: Input data
+            symbol: Trading symbol context
             max_evals: Maximum evaluations
             
         Returns:
@@ -247,7 +247,7 @@ class CryptoTradingSHAPExplainer:
             if data_array.ndim == 1:
                 data_array = data_array.reshape(1, -1)
             
-            # Check cache first для performance
+            # Check cache first performance
             cache_key = self._get_cache_key(data_array, symbol)
             if self.config.cache_explanations:
                 cached_explanation = self._load_from_cache(cache_key)
@@ -272,7 +272,7 @@ class CryptoTradingSHAPExplainer:
             
             # Handle multi-class outputs
             if isinstance(shap_values, list):
-                # Multi-class: use positive class или class with highest prediction
+                # Multi-class: use positive class class with highest prediction
                 prediction = self.model.predict_proba(data_array)[0] if hasattr(self.model, 'predict_proba') else self.model.predict(data_array)
                 if isinstance(prediction, np.ndarray) and len(prediction) > 1:
                     class_idx = np.argmax(prediction)
@@ -306,7 +306,7 @@ class CryptoTradingSHAPExplainer:
                 **trade_metadata
             )
             
-            # Cache для future requests
+            # Cache future requests
             if self.config.cache_explanations:
                 self._save_to_cache(cache_key, explanation)
             
@@ -324,11 +324,11 @@ class CryptoTradingSHAPExplainer:
         batch_size: Optional[int] = None
     ) -> List[SHAPExplanation]:
         """
-        Batch SHAP explanations для high-throughput processing
+        Batch SHAP explanations high-throughput processing
         
         Args:
             data_batch: Batch of input data
-            symbols: Trading symbols для each sample
+            symbols: Trading symbols each sample
             batch_size: Processing batch size
             
         Returns:
@@ -359,7 +359,7 @@ class CryptoTradingSHAPExplainer:
         metadata = {}
         
         try:
-            # Get model prediction с confidence
+            # Get model prediction confidence
             if hasattr(self.model, 'predict_proba'):
                 prediction_proba = self.model.predict_proba(data.reshape(1, -1))[0]
                 prediction_confidence = float(np.max(prediction_proba))
@@ -394,7 +394,7 @@ class CryptoTradingSHAPExplainer:
         return metadata
     
     def _get_cache_key(self, data: np.ndarray, symbol: Optional[str]) -> str:
-        """Generate unique cache key для explanation"""
+        """Generate unique cache key explanation"""
         data_hash = hash(data.tobytes())
         model_hash = hash(str(type(self.model)))
         symbol_hash = hash(symbol or "")
@@ -433,7 +433,7 @@ class CryptoTradingSHAPExplainer:
             aggregation: Aggregation method ('mean_abs', 'mean', 'median_abs', 'std')
             
         Returns:
-            DataFrame с feature importance rankings
+            DataFrame feature importance rankings
         """
         if not explanations:
             raise ValueError("No explanations provided")
@@ -486,8 +486,8 @@ class CryptoTradingSHAPExplainer:
         Analyze feature interactions using SHAP interaction values
         
         Args:
-            data: Input data для анализа
-            feature_pairs: Specific feature pairs для анализа
+            data: Input data analysis
+            feature_pairs: Specific feature pairs analysis
             max_pairs: Maximum number of top interactions
             
         Returns:
@@ -642,7 +642,7 @@ class CryptoTradingSHAPExplainer:
             return 0.0
     
     def _detect_bias_indicators(self, explanations: List[SHAPExplanation]) -> Dict[str, Any]:
-        """Detect potential bias indicators в explanations"""
+        """Detect potential bias indicators explanations"""
         bias_indicators = {
             'feature_dominance': {},
             'symbol_bias': {},

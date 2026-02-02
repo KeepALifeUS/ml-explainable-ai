@@ -1,8 +1,8 @@
 """
-Feature Importance Analysis для Crypto Trading Bot v5.0
+Feature Importance Analysis Crypto Trading Bot v5.0
 
-Реализует comprehensive анализ важности признаков для торговых моделей
-с поддержкой multiple methods и enterprise patterns.
+ comprehensive analysis
+ support multiple methods enterprise patterns.
 """
 
 import logging
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class FeatureImportanceConfig:
-    """Конфигурация для feature importance analysis с enterprise patterns"""
+    """Configuration feature importance analysis enterprise patterns"""
     methods: List[str] = None  # ['permutation', 'shap', 'mutual_info', 'rfe', 'univariate']
     n_repeats: int = 10  # For permutation importance
     random_state: int = 42
@@ -69,7 +69,7 @@ class FeatureImportanceConfig:
 
 @dataclass
 class FeatureImportanceResult:
-    """Результат анализа важности признаков с  metadata"""
+    """ analysis metadata"""
     feature_scores: Dict[str, Dict[str, float]]  # method -> feature -> score
     feature_rankings: Dict[str, List[Tuple[str, float]]]  # method -> [(feature, score), ...]
     consensus_ranking: List[Tuple[str, float]]  # Consensus across methods
@@ -91,21 +91,21 @@ class FeatureImportanceResult:
 
 class CryptoTradingFeatureImportanceAnalyzer:
     """
-    Enterprise-grade feature importance analyzer для crypto trading models
+    Enterprise-grade feature importance analyzer crypto trading models
     
-    Provides comprehensive feature analysis для:
+    Provides comprehensive feature analysis :
     - Trading signal prediction models
     - Risk assessment models
     - Portfolio optimization
     - Market regime detection
-    - Feature selection и dimensionality reduction
+    - Feature selection dimensionality reduction
     
     enterprise patterns:
     - Multi-method consensus analysis
     - Trading-aware feature categorization
-    - Enterprise caching и monitoring
-    - Async processing для large datasets
-    - Statistical validation и stability analysis
+    - Enterprise caching monitoring
+    - Async processing large datasets
+    - Statistical validation stability analysis
     """
     
     def __init__(
@@ -120,7 +120,7 @@ class CryptoTradingFeatureImportanceAnalyzer:
         self.cache_dir = cache_dir or Path("./cache/feature_importance")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         
-        # Feature categorization для trading
+        # Feature categorization trading
         self.trading_feature_categories = self._init_trading_feature_categories()
         
         # Async executor
@@ -150,12 +150,12 @@ class CryptoTradingFeatureImportanceAnalyzer:
         feature_names: Optional[List[str]] = None
     ) -> FeatureImportanceResult:
         """
-        Async feature importance analysis для large datasets
+        Async feature importance analysis large datasets
         
         Args:
             X: Feature matrix
             y: Target variable
-            feature_names: Feature names для interpretability
+            feature_names: Feature names interpretability
             
         Returns:
             Comprehensive feature importance results
@@ -758,7 +758,7 @@ class CryptoTradingFeatureImportanceAnalyzer:
         y: np.ndarray,
         consensus_ranking: List[Tuple[str, float]]
     ) -> Dict[str, float]:
-        """Calculate validation metrics для feature importance"""
+        """Calculate validation metrics feature importance"""
         try:
             validation_metrics = {}
             

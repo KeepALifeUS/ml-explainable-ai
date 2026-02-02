@@ -1,9 +1,9 @@
 """
-Counterfactual Explainer для Crypto Trading Bot v5.0
+Counterfactual Explainer Crypto Trading Bot v5.0
 
-Реализует counterfactual explanations для understanding decision boundaries
-и альтернативных сценариев в торговых моделях.
-enterprise patterns для scenario-based interpretability.
+ counterfactual explanations understanding decision boundaries
+     .
+enterprise patterns scenario-based interpretability.
 """
 
 import logging
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class CounterfactualConfig:
-    """Конфигурация для counterfactual explainer с enterprise patterns"""
+    """Configuration counterfactual explainer enterprise patterns"""
     method: str = 'optimization'  # 'optimization', 'prototype', 'genetic', 'alibi'
     target_class: Optional[int] = None
     distance_metric: str = 'euclidean'
@@ -63,7 +63,7 @@ class CounterfactualConfig:
 
 @dataclass
 class CounterfactualExplanation:
-    """Structured counterfactual explanation с  metadata"""
+    """Structured counterfactual explanation metadata"""
     original_instance: np.ndarray
     counterfactual_instance: np.ndarray
     original_prediction: Union[int, float, np.ndarray]
@@ -92,9 +92,9 @@ class CounterfactualExplanation:
 
 class CryptoTradingCounterfactualExplainer:
     """
-    Enterprise-grade counterfactual explainer для crypto trading models
+    Enterprise-grade counterfactual explainer crypto trading models
     
-    Provides counterfactual analysis для:
+    Provides counterfactual analysis :
     - Understanding decision boundaries
     - "What-if" scenario analysis  
     - Alternative trading strategies
@@ -105,7 +105,7 @@ class CryptoTradingCounterfactualExplainer:
     - Advanced optimization algorithms
     - Market constraint preservation
     - High-performance async processing
-    - Enterprise caching и monitoring
+    - Enterprise caching monitoring
     - Regulatory compliance tracking
     """
     
@@ -116,7 +116,7 @@ class CryptoTradingCounterfactualExplainer:
         feature_names: Optional[List[str]] = None,
         cache_dir: Optional[Path] = None
     ):
-        """Initialize counterfactual explainer с enterprise configuration"""
+        """Initialize counterfactual explainer enterprise configuration"""
         self.model = model
         self.config = config or CounterfactualConfig()
         self.feature_names = feature_names or []
@@ -127,7 +127,7 @@ class CryptoTradingCounterfactualExplainer:
         self._predict_fn = self._create_predict_function()
         self._predict_proba_fn = self._create_predict_proba_function()
         
-        # Training data boundaries для constraint validation
+        # Training data boundaries constraint validation
         self._feature_bounds: Optional[Dict[int, Tuple[float, float]]] = None
         
         # Async executor
@@ -169,11 +169,11 @@ class CryptoTradingCounterfactualExplainer:
         feature_names: Optional[List[str]] = None
     ) -> None:
         """
-        Fit counterfactual explainer на training данных
+        Fit counterfactual explainer on training data
         
         Args:
-            training_data: Training data для constraint learning
-            feature_names: Feature names для interpretability
+            training_data: Training data constraint learning
+            feature_names: Feature names interpretability
         """
         try:
             # Process training data
@@ -184,7 +184,7 @@ class CryptoTradingCounterfactualExplainer:
                 self.feature_names = feature_names or self.feature_names
                 training_array = training_data
             
-            # Calculate feature bounds для constraints
+            # Calculate feature bounds constraints
             self._feature_bounds = {}
             for i in range(training_array.shape[1]):
                 if self.config.categorical_features and i in self.config.categorical_features:
@@ -192,7 +192,7 @@ class CryptoTradingCounterfactualExplainer:
                     unique_values = np.unique(training_array[:, i])
                     self._feature_bounds[i] = (float(np.min(unique_values)), float(np.max(unique_values)))
                 else:
-                    # Continuous feature: use min/max с margin
+                    # Continuous feature: use min/max margin
                     margin = (np.max(training_array[:, i]) - np.min(training_array[:, i])) * 0.1
                     self._feature_bounds[i] = (
                         float(np.min(training_array[:, i]) - margin),
@@ -232,15 +232,15 @@ class CryptoTradingCounterfactualExplainer:
         symbol: Optional[str] = None
     ) -> CounterfactualExplanation:
         """
-        Async counterfactual explanation для high-frequency trading
+        Async counterfactual explanation high-frequency trading
         
         Args:
-            instance: Instance для counterfactual generation
-            target_class: Target class для counterfactual
-            symbol: Trading symbol для context
+            instance: Instance counterfactual generation
+            target_class: Target class counterfactual
+            symbol: Trading symbol context
             
         Returns:
-            Counterfactual explanation с trading metadata
+            Counterfactual explanation trading metadata
         """
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(
@@ -258,12 +258,12 @@ class CryptoTradingCounterfactualExplainer:
         symbol: Optional[str] = None
     ) -> CounterfactualExplanation:
         """
-        Generate counterfactual explanation для instance
+        Generate counterfactual explanation instance
         
         Args:
-            instance: Input instance для counterfactual
+            instance: Input instance counterfactual
             target_class: Desired prediction class
-            symbol: Trading symbol для context
+            symbol: Trading symbol context
             
         Returns:
             Comprehensive counterfactual explanation
@@ -357,7 +357,7 @@ class CryptoTradingCounterfactualExplainer:
                 **trade_metadata
             )
             
-            # Cache результат
+            # Cache
             if self.config.cache_results:
                 self._save_to_cache(cache_key, explanation)
             
@@ -397,7 +397,7 @@ class CryptoTradingCounterfactualExplainer:
         """Generate counterfactual via gradient-based optimization"""
         
         def objective(x):
-            """Objective function для optimization"""
+            """Objective function optimization"""
             # Prediction loss
             pred = self._predict_fn(x.reshape(1, -1))[0]
             if isinstance(target_class, (int, np.integer)):
@@ -537,7 +537,7 @@ class CryptoTradingCounterfactualExplainer:
             # Generate random candidate
             candidate = instance.copy()
             
-            # Randomly perturb некоторые features
+            # Randomly perturb features
             n_features_to_change = np.random.randint(1, len(instance) // 2 + 1)
             features_to_change = np.random.choice(len(instance), n_features_to_change, replace=False)
             
@@ -613,7 +613,7 @@ class CryptoTradingCounterfactualExplainer:
             return self._generate_via_optimization(instance, target_class)
     
     def _calculate_constraint_penalty(self, x: np.ndarray) -> float:
-        """Calculate penalty для constraint violations"""
+        """Calculate penalty constraint violations"""
         penalty = 0.0
         
         try:
@@ -651,7 +651,7 @@ class CryptoTradingCounterfactualExplainer:
         return penalty
     
     def _calculate_plausibility(self, counterfactual: np.ndarray) -> float:
-        """Calculate plausibility score для counterfactual"""
+        """Calculate plausibility score counterfactual"""
         try:
             plausibility_factors = []
             
@@ -823,9 +823,9 @@ class CryptoTradingCounterfactualExplainer:
         Analyze decision boundary around instance
         
         Args:
-            instance: Central instance для анализа
-            n_samples: Number of samples для boundary exploration
-            feature_indices: Features для perturbation
+            instance: Central instance analysis
+            n_samples: Number of samples boundary exploration
+            feature_indices: Features perturbation
             
         Returns:
             Decision boundary analysis
@@ -859,7 +859,7 @@ class CryptoTradingCounterfactualExplainer:
                 boundary_analysis['predictions'].append(prediction)
                 boundary_analysis['distances'].append(distance)
             
-            # Analyze feature importance для boundary crossing
+            # Analyze feature importance boundary crossing
             original_pred = self._predict_fn(instance.reshape(1, -1))[0]
             
             for feature_idx in feature_indices:
@@ -893,12 +893,12 @@ class CryptoTradingCounterfactualExplainer:
         symbol: Optional[str] = None
     ) -> List[CounterfactualExplanation]:
         """
-        Generate multiple diverse counterfactuals для comprehensive analysis
+        Generate multiple diverse counterfactuals comprehensive analysis
         
         Args:
             instance: Input instance
             n_counterfactuals: Number of counterfactuals to generate
-            diversity_weight: Weight для diversity в selection
+            diversity_weight: Weight diversity selection
             symbol: Trading symbol
             
         Returns:
@@ -916,7 +916,7 @@ class CryptoTradingCounterfactualExplainer:
                     classes = self.model.classes_
                     target_class = classes[i % len(classes)]
                 else:
-                    # For regression или unknown model
+                    # For regression unknown model
                     original_pred = self._predict_fn(instance.reshape(1, -1) if instance.ndim == 1 else instance)[0]
                     target_class = original_pred + np.random.uniform(-1, 1)
                 
@@ -973,7 +973,7 @@ class CryptoTradingCounterfactualExplainer:
         target_class: Union[int, float],
         symbol: Optional[str]
     ) -> str:
-        """Generate cache key для counterfactual"""
+        """Generate cache key counterfactual"""
         instance_hash = hash(instance.tobytes())
         model_hash = hash(str(type(self.model)))
         target_hash = hash(str(target_class))

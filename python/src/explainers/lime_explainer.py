@@ -1,8 +1,8 @@
 """
-LIME (Local Interpretable Model-agnostic Explanations) Explainer для Crypto Trading Bot v5.0
+LIME (Local Interpretable Model-agnostic Explanations) Explainer Crypto Trading Bot v5.0
 
-Реализует LIME-based local explanations для любых ML моделей в торговых системах.
-enterprise patterns для model-agnostic interpretability.
+ LIME-based local explanations ML .
+enterprise patterns model-agnostic interpretability.
 """
 
 import logging
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class LIMEConfig:
-    """Конфигурация для LIME explainer с enterprise patterns"""
+    """Configuration LIME explainer enterprise patterns"""
     mode: str = 'tabular'  # 'tabular', 'text', 'image'
     num_features: int = 10
     num_samples: int = 1000
@@ -56,7 +56,7 @@ class LIMEConfig:
 
 @dataclass
 class LIMEExplanation:
-    """Structured LIME explanation результат с  metadata"""
+    """Structured LIME explanation metadata"""
     local_explanation: Dict[str, Any]
     feature_importance: Dict[str, float]
     prediction_probabilities: np.ndarray
@@ -82,9 +82,9 @@ class LIMEExplanation:
 
 class CryptoTradingLIMEExplainer:
     """
-    Enterprise-grade LIME explainer для crypto trading models
+    Enterprise-grade LIME explainer crypto trading models
     
-    Provides local, model-agnostic interpretability для:
+    Provides local, model-agnostic interpretability :
     - Individual trading decisions
     - Specific market conditions
     - Real-time prediction explanations
@@ -92,11 +92,11 @@ class CryptoTradingLIMEExplainer:
     - Black-box model understanding
     
     enterprise patterns:
-    - Model-agnostic architecture для any ML framework
+    - Model-agnostic architecture any ML framework
     - High-performance local explanations
-    - Enterprise caching и monitoring
-    - Async processing для real-time trading
-    - Compliance tracking для regulatory audit
+    - Enterprise caching monitoring
+    - Async processing real-time trading
+    - Compliance tracking regulatory audit
     """
     
     def __init__(
@@ -108,13 +108,13 @@ class CryptoTradingLIMEExplainer:
         categorical_features: Optional[List[int]] = None,
         categorical_names: Optional[Dict[int, List[str]]] = None
     ):
-        """Initialize LIME explainer с enterprise configuration"""
+        """Initialize LIME explainer enterprise configuration"""
         self.model = model
         self.config = config or LIMEConfig()
         self.cache_dir = cache_dir or Path("./cache/lime_explanations")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         
-        # Model wrapper для consistent interface
+        # Model wrapper consistent interface
         self._model_predict_fn = self._create_model_predict_function()
         
         # LIME explainer components
@@ -123,7 +123,7 @@ class CryptoTradingLIMEExplainer:
         self._categorical_features = categorical_features or []
         self._categorical_names = categorical_names or {}
         
-        # Training data для LIME background
+        # Training data LIME background
         self._training_data: Optional[np.ndarray] = None
         
         # Async executor
@@ -136,7 +136,7 @@ class CryptoTradingLIMEExplainer:
         if hasattr(self.model, 'predict_proba'):
             return lambda x: self.model.predict_proba(x)
         elif hasattr(self.model, 'predict'):
-            # Wrap single predictions в probability-like format
+            # Wrap single predictions probability-like format
             def predict_wrapper(x):
                 predictions = self.model.predict(x)
                 if predictions.ndim == 1:
@@ -156,13 +156,13 @@ class CryptoTradingLIMEExplainer:
         categorical_names: Optional[Dict[int, List[str]]] = None
     ) -> None:
         """
-        Fit LIME explainer на training данных
+        Fit LIME explainer on training data
         
         Args:
-            training_data: Background data для LIME sampling
-            feature_names: Feature names для interpretability
+            training_data: Background data LIME sampling
+            feature_names: Feature names interpretability
             categorical_features: Indices of categorical features
-            categorical_names: Names для categorical feature values
+            categorical_names: Names categorical feature values
         """
         try:
             # Process training data
@@ -220,16 +220,16 @@ class CryptoTradingLIMEExplainer:
         num_samples: Optional[int] = None
     ) -> LIMEExplanation:
         """
-        Async LIME explanation для high-frequency trading
+        Async LIME explanation high-frequency trading
         
         Args:
-            instance: Single instance для explanation
-            symbol: Trading symbol для context
-            num_features: Number of features в explanation
+            instance: Single instance explanation
+            symbol: Trading symbol context
+            num_features: Number of features explanation
             num_samples: Number of perturbed samples
             
         Returns:
-            Structured LIME explanation с trading metadata
+            Structured LIME explanation trading metadata
         """
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(
@@ -249,11 +249,11 @@ class CryptoTradingLIMEExplainer:
         num_samples: Optional[int] = None
     ) -> LIMEExplanation:
         """
-        Generate LIME explanation для single instance
+        Generate LIME explanation single instance
         
         Args:
-            instance: Input instance для explanation
-            symbol: Trading symbol для context
+            instance: Input instance explanation
+            symbol: Trading symbol context
             num_features: Number of top features
             num_samples: Number of perturbed samples
             
@@ -301,12 +301,12 @@ class CryptoTradingLIMEExplainer:
             feature_importance = {}
             local_explanation = {}
             
-            # Get explanation для each label
+            # Get explanation each label
             for label in lime_explanation.available_labels():
                 label_explanation = lime_explanation.as_list(label=label)
                 local_explanation[f'label_{label}'] = label_explanation
                 
-                # Extract feature importance для this label
+                # Extract feature importance this label
                 for feature_name, importance in label_explanation:
                     if f'label_{label}' not in feature_importance:
                         feature_importance[f'label_{label}'] = {}
@@ -341,7 +341,7 @@ class CryptoTradingLIMEExplainer:
                 **trade_metadata
             )
             
-            # Cache для future use
+            # Cache future use
             if self.config.cache_explanations:
                 self._save_to_cache(cache_key, explanation)
             
@@ -360,11 +360,11 @@ class CryptoTradingLIMEExplainer:
         num_samples: Optional[int] = None
     ) -> List[LIMEExplanation]:
         """
-        Batch LIME explanations для multiple instances
+        Batch LIME explanations multiple instances
         
         Args:
-            instances: Multiple instances для explanation
-            symbols: Trading symbols для each instance
+            instances: Multiple instances explanation
+            symbols: Trading symbols each instance
             num_features: Number of features per explanation
             num_samples: Number of samples per explanation
             
@@ -384,7 +384,7 @@ class CryptoTradingLIMEExplainer:
         
         symbols = symbols or [None] * len(instance_arrays)
         
-        # Process in batches для performance
+        # Process in batches performance
         batch_size = self.config.batch_size
         explanations = []
         
@@ -434,7 +434,7 @@ class CryptoTradingLIMEExplainer:
             # Calculate explanation fidelity (consistency)
             original_pred = self._model_predict_fn(instance.reshape(1, -1))[0]
             
-            # Generate small perturbations и check consistency
+            # Generate small perturbations check consistency
             n_fidelity_samples = min(100, num_samples // 10)
             fidelity_scores = []
             
@@ -443,12 +443,12 @@ class CryptoTradingLIMEExplainer:
                 noise = np.random.normal(0, 0.01, instance.shape)
                 perturbed_instance = instance + noise
                 
-                # Get explanations для both
+                # Get explanations both
                 try:
                     perturbed_explanation = self._explainer.explain_instance(
                         perturbed_instance,
                         self._model_predict_fn,
-                        num_features=5,  # Reduced для speed
+                        num_features=5, # Reduced speed
                         num_samples=num_samples // 10
                     )
                     
@@ -503,7 +503,7 @@ class CryptoTradingLIMEExplainer:
                 'trade_signal': trade_signal
             })
             
-            # Feature values для context
+            # Feature values context
             if self.config.include_feature_values and self._feature_names:
                 feature_values = {}
                 for i, feature_name in enumerate(self._feature_names):
@@ -526,7 +526,7 @@ class CryptoTradingLIMEExplainer:
         Analyze how feature perturbations affect predictions
         
         Args:
-            instance: Base instance для perturbation
+            instance: Base instance perturbation
             feature_indices: Features to perturb (default: all)
             perturbation_sizes: Sizes of perturbations
             
@@ -580,17 +580,17 @@ class CryptoTradingLIMEExplainer:
         comparison_metric: str = 'feature_overlap'
     ) -> Dict[str, Any]:
         """
-        Compare multiple LIME explanations для consistency analysis
+        Compare multiple LIME explanations consistency analysis
         
         Args:
-            explanations: List of explanations для comparison
-            comparison_metric: Metric для comparison
+            explanations: List of explanations comparison
+            comparison_metric: Metric comparison
             
         Returns:
             Comparison analysis results
         """
         if len(explanations) < 2:
-            raise ValueError("Need at least 2 explanations для comparison")
+            raise ValueError("Need at least 2 explanations comparison")
         
         comparison_results = {
             'total_explanations': len(explanations),
@@ -647,7 +647,7 @@ class CryptoTradingLIMEExplainer:
         num_features: int,
         num_samples: int
     ) -> str:
-        """Generate cache key для explanation"""
+        """Generate cache key explanation"""
         instance_hash = hash(instance.tobytes())
         model_hash = hash(str(type(self.model)))
         symbol_hash = hash(symbol or "")
@@ -773,7 +773,7 @@ class CryptoTradingLIMEExplainer:
         return patterns
     
     def _calculate_compliance_metrics(self, explanations: List[LIMEExplanation]) -> Dict[str, Any]:
-        """Calculate compliance и regulatory metrics"""
+        """Calculate compliance regulatory metrics"""
         compliance = {
             'explainability_coverage': len(explanations),
             'model_transparency': {
