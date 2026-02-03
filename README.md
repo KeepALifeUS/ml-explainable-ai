@@ -380,3 +380,7 @@ For technical support and feature requests, please use the project's issue track
 ---
 
 **Built for transparent and explainable crypto trading AI systems**
+
+## Support
+
+For questions and support, please open an issue on GitHub.
