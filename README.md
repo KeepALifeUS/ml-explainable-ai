@@ -1,10 +1,10 @@
-# 🤖 ML Explainable AI Framework for Crypto Trading Bot v5.0
+# ML Explainable AI Framework for Crypto Trading Bot v5.0
 
 ## Overview
 
 Comprehensive enterprise-grade Explainable AI (XAI) framework specifically designed for crypto trading models. This framework provides deep insights into ML model decisions, ensuring transparency, regulatory compliance, and interpretability in high-stakes financial environments.
 
-## 🎯 Key Features
+## Key Features
 
 ### Core Explainers
 
@@ -22,13 +22,13 @@ Comprehensive enterprise-grade Explainable AI (XAI) framework specifically desig
 
 ### Enterprise Features
 
-- **enterprise integration**: Enterprise-grade architectural patterns
+- **Enterprise Integration**: Enterprise-grade architectural patterns
 - **Async Processing**: High-performance explanations for real-time trading
 - **Caching System**: Intelligent explanation caching for performance optimization
 - **Compliance Tracking**: Regulatory compliance monitoring and reporting
 - **Multi-Model Support**: Works with all major ML frameworks
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -79,7 +79,7 @@ dashboard.run()  # Access at http://localhost:8050
 
 ```
 
-## 📚 Core Components
+## Core Components
 
 ### Explainers (`src/explainers/`)
 
@@ -104,7 +104,7 @@ dashboard.run()  # Access at http://localhost:8050
 - `explanation_reporter.py` - Automated explanation reports
 - `compliance_reporter.py` - Regulatory compliance documentation
 
-## 🎨 Dashboard Features
+## Dashboard Features
 
 ### Real-time Monitoring
 
@@ -127,7 +127,7 @@ dashboard.run()  # Access at http://localhost:8050
 - Risk level categorization
 - Market condition correlation
 
-## 🔧 Configuration
+## Configuration
 
 ### SHAP Configuration
 
@@ -158,7 +158,7 @@ config = LIMEConfig(
 
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### enterprise patterns
 
@@ -175,7 +175,7 @@ config = LIMEConfig(
 - **Risk Assessment**: Multi-level risk categorization
 - **Performance Attribution**: P&L explanation capabilities
 
-## 📊 Explanation Types
+## Explanation Types
 
 ### Global Explanations
 
@@ -198,7 +198,7 @@ config = LIMEConfig(
 - Market regime analysis
 - Strategy attribution
 
-## 🔒 Compliance & Security
+## Compliance & Security
 
 ### Regulatory Features
 
@@ -214,7 +214,7 @@ config = LIMEConfig(
 - Access control integration
 - Encrypted cache storage
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -232,7 +232,7 @@ pytest tests/test_analysis.py -v
 
 ```
 
-## 📈 Performance
+## Performance
 
 ### Optimization Features
 
@@ -248,7 +248,7 @@ pytest tests/test_analysis.py -v
 - Dashboard response: <100ms
 - Batch processing: 1000+ explanations/minute
 
-## 🤝 Integration Examples
+## Integration Examples
 
 ### With Trading Models
 
@@ -288,7 +288,7 @@ async def explain_trade_decision(order_data, model):
 
 ```
 
-## 📖 API Reference
+## API Reference
 
 ### Core Classes
 
@@ -313,7 +313,7 @@ async def explain_trade_decision(order_data, model):
 - `CounterfactualExplanation`: Counterfactual results
 - `AnchorExplanation`: Anchor rule results
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -342,7 +342,7 @@ dashboard = ExplanationDashboard(port=8051)  # Try different port
 
 ```
 
-## 📋 Roadmap
+## Roadmap
 
 ### Upcoming Features
 
@@ -359,7 +359,7 @@ dashboard = ExplanationDashboard(port=8051)  # Try different port
 - Advanced caching strategies
 - Real-time streaming support
 
-## 🤝 Contributing
+## Contributing
 
 This framework is part of the Crypto Trading Bot v5.0 enterprise system. For contributions:
 
@@ -369,14 +369,14 @@ This framework is part of the Crypto Trading Bot v5.0 enterprise system. For con
 4. Update documentation
 5. Ensure trading-specific features work correctly
 
-## 📄 License
+## License
 
 MIT License - see LICENSE file for details.
 
-## 🆘 Support
+## Support
 
 For technical support and feature requests, please use the project's issue tracking system.
 
 ---
 
-**Built with ❤️ for transparent and explainable crypto trading AI systems**
+**Built for transparent and explainable crypto trading AI systems**
